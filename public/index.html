@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <!-- Icons -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
+        <!-- Google Font -->
+        <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Title Page -->
+        <div id="titlepage">
+            <div id="titlecontent">
+                <h2>Chat Rooms</h2>
+                <button id="btnjoin" onclick="btnjoin()">Create / Join</button>
+            </div>
+        </div>
+
+        <!-- Join Page -->
+        <div id="joinpage">
+            <div id="joincontent">
+                <h2>Name:</h2>
+                <input id="inputPlayerName" autocomplete="off" type="text" />  
+
+                <h2>Game ID:</h2>
+                <input id="inputGameID" autocomplete="off" type="text"/>
+                <div></div>
+                <button id="btncolor" onclick="btncolor()"><i class='bx bxs-palette' ></i></button>
+                <p></p>
+                <button id="btnstart" onclick="btnstart()">Start</button>
+            </div>  
+        </div>
+
+        <!-- Chat Page -->
+        <div id="chatpage">
+            <div id="gameidtext"></div>
+
+            <div id="chattext"></div>
+
+            <form id="chatform">
+                <input id="chatinput" style="width:69%; height:30px;" autocomplete="off" type="text" /> 
+                <input class="btn" type="submit" value="Send" />
+            </form>
+        </div> 
+
+        <!-- Choice Page -->
+        <div id="choicepage">
+            <h3>Please wait for all players to join</h3>
+            <button id="btngame1" onclick="btngame1()">Start Game 1</button>
+        </div>
+
+        <!-- Game Page --> 
+        <!-- Game Table looks really inefficient, looking to use jquerry in future versions for simplicity-->
+        <div id="gamepage">
+        <div id = "gametable">
+            <table >
+                <tr>
+                    <td id='1' onclick="tdclick(this);"></td>  <td id='2' onclick="tdclick(this);"></td>  <td id='3' onclick="tdclick(this);">
+                    <td id='4' onclick="tdclick(this);"></td>  <td id='5' onclick="tdclick(this);"></td>  <td id='6' onclick="tdclick(this);">
+                    <td id='7' onclick="tdclick(this);"></td>  <td id='8' onclick="tdclick(this);"></td>  <td id='9' onclick="tdclick(this);">
+                    <td id='10' onclick="tdclick(this);"></td>
+                </tr>
+                <tr>
+                    <td id='11' onclick="tdclick(this);"></td>  <td id='12' onclick="tdclick(this);"></td>  <td id='13' onclick="tdclick(this);">
+                    <td id='14' onclick="tdclick(this);"></td>  <td id='15' onclick="tdclick(this);"></td>  <td id='16' onclick="tdclick(this);">
+                    <td id='17' onclick="tdclick(this);"></td>  <td id='18' onclick="tdclick(this);"></td>  <td id='19' onclick="tdclick(this);">
+                    <td id='20' onclick="tdclick(this);"></td>
+                </tr>
+                <tr>
+                    <td id='21' onclick="tdclick(this);"></td>  <td id='22' onclick="tdclick(this);"></td>  <td id='23' onclick="tdclick(this);">
+                    <td id='24' onclick="tdclick(this);"></td>  <td id='25' onclick="tdclick(this);"></td>  <td id='26' onclick="tdclick(this);">
+                    <td id='27' onclick="tdclick(this);"></td>  <td id='28' onclick="tdclick(this);"></td>  <td id='29' onclick="tdclick(this);">
+                    <td id='30' onclick="tdclick(this);"></td>
+                </tr>
+                    
+                <tr>
+                    <td id='31' onclick="tdclick(this);"></td>  <td id='32' onclick="tdclick(this);"></td>  <td id='33' onclick="tdclick(this);">
+                    <td id='34' onclick="tdclick(this);"></td>  <td id='35' onclick="tdclick(this);"></td>  <td id='36' onclick="tdclick(this);">
+                    <td id='37' onclick="tdclick(this);"></td>  <td id='38' onclick="tdclick(this);"></td>  <td id='39' onclick="tdclick(this);">
+                    <td id='40' onclick="tdclick(this);"></td>
+                </tr>
+
+                <tr>
+                    <td id='41' onclick="tdclick(this);"></td>  <td id='42' onclick="tdclick(this);"></td>  <td id='43' onclick="tdclick(this);">
+                    <td id='44' onclick="tdclick(this);"></td>  <td id='45' onclick="tdclick(this);"></td>  <td id='46' onclick="tdclick(this);">
+                    <td id='47' onclick="tdclick(this);"></td>  <td id='48' onclick="tdclick(this);"></td>  <td id='49' onclick="tdclick(this);">
+                    <td id='50' onclick="tdclick(this);"></td>
+                </tr>
+
+                <tr>
+                    <td id='51' onclick="tdclick(this);"></td>  <td id='52' onclick="tdclick(this);"></td>  <td id='53' onclick="tdclick(this);">
+                    <td id='54' onclick="tdclick(this);"></td>  <td id='55' onclick="tdclick(this);"></td>  <td id='56' onclick="tdclick(this);">
+                    <td id='57' onclick="tdclick(this);"></td>  <td id='58' onclick="tdclick(this);"></td>  <td id='59' onclick="tdclick(this);">
+                    <td id='60' onclick="tdclick(this);"></td>
+                </tr>
+
+                <tr>
+                    <td id='61' onclick="tdclick(this);"></td>  <td id='62' onclick="tdclick(this);"></td>  <td id='63' onclick="tdclick(this);">
+                    <td id='64' onclick="tdclick(this);"></td>  <td id='65' onclick="tdclick(this);"></td>  <td id='66' onclick="tdclick(this);">
+                    <td id='67' onclick="tdclick(this);"></td>  <td id='68' onclick="tdclick(this);"></td>  <td id='69' onclick="tdclick(this);">
+                    <td id='70' onclick="tdclick(this);"></td>
+                </tr>
+
+                <tr>
+                    <td id='71' onclick="tdclick(this);"></td>  <td id='72' onclick="tdclick(this);"></td>  <td id='73' onclick="tdclick(this);">
+                    <td id='74' onclick="tdclick(this);"></td>  <td id='75' onclick="tdclick(this);"></td>  <td id='76' onclick="tdclick(this);">
+                    <td id='77' onclick="tdclick(this);"></td>  <td id='78' onclick="tdclick(this);"></td>  <td id='79' onclick="tdclick(this);">
+                    <td id='80' onclick="tdclick(this);"></td>
+                </tr>
+
+                <tr>
+                    <td id='81' onclick="tdclick(this);"></td>  <td id='82' onclick="tdclick(this);"></td>  <td id='83' onclick="tdclick(this);">
+                    <td id='84' onclick="tdclick(this);"></td>  <td id='85' onclick="tdclick(this);"></td>  <td id='86' onclick="tdclick(this);">
+                    <td id='87' onclick="tdclick(this);"></td>  <td id='88' onclick="tdclick(this);"></td>  <td id='89' onclick="tdclick(this);">
+                    <td id='90' onclick="tdclick(this);"></td>
+                </tr>
+
+                <tr>
+                    <td id='91' onclick="tdclick(this);"></td>  <td id='92' onclick="tdclick(this);"></td>  <td id='93' onclick="tdclick(this);">
+                    <td id='94' onclick="tdclick(this);"></td>  <td id='95' onclick="tdclick(this);"></td>  <td id='96' onclick="tdclick(this);">
+                    <td id='97' onclick="tdclick(this);"></td>  <td id='98' onclick="tdclick(this);"></td>  <td id='99' onclick="tdclick(this);">
+                    <td id='100' onclick="tdclick(this);"></td>
+                </tr>
+            </table>
+        </div>
+        </div>
+
+        <!-- Score Page -->
+        <div id="scorepage">
+            <h3>Score:</h3>
+            <div id="scoretext"></div>
+        </div>
+
+        <!-- Scripts     -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="scripts.js"></script>
+    </body>
+</html>
+
+
+

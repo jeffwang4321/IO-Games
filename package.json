@@ -1,0 +1,16 @@
+{
+  "name": "iogame",
+  "version": "1.0.0",
+  "description": "iogames",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Jeff Wang",
+  "license": "ISC"
+}

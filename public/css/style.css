@@ -1,0 +1,152 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Quicksand";
+}
+body {
+    display: flex;
+    background: #e4ecff;
+    justify-content: center;
+}
+
+/* Title & Join page */
+#titlepage, #joinpage{
+    display: none;
+    margin: 100px;
+    padding: 27px;
+    background:  white;
+    border-radius: 15px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+}
+#titlecontent, #joincontent{
+    text-align: center;
+}
+#inputPlayerName, #inputGameID{
+    margin-bottom: 5px;
+    width: 130px;
+    height: 30px;
+}
+
+/* Buttons */
+.btn, button{
+    height: 30px;
+    background:#4070F4;
+    border-radius: 5px;
+    outline: none; 
+    border: none;
+    text-align: center;
+    color: white;
+}
+
+.btn{
+    margin-left: 3px;
+    width: 20%;
+}
+
+button{
+    margin: 5px;
+    width: 130px;
+}
+
+.btn:hover, button:hover{
+    background: gray;
+    cursor: pointer;
+}
+
+#btncolor{
+    padding: 1px;
+    font-size: 25px;
+}
+
+
+/* Chat, choice, game & score page */
+#chatpage, #choicepage, #gamepage, #scorepage{
+    display: none;
+    margin: 30px 0;
+    height: 450px;
+    background:  white;
+    border-radius: 15px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+/* Chat and score page content */
+#chatpage, #scorepage{
+    width: 275px;
+}
+#chattext, #scoretext {
+    margin: 3px auto 9px;
+    width: 90%;
+    background: lightgray;
+    overflow: auto;
+}
+#chattext{
+    height: calc(69% + 60px);
+}
+
+#scoretext{
+    height: calc(84% + 30px);
+}
+#gameidtext{
+    padding-top: 4px;
+    height: 30px;
+    overflow: hidden;
+}
+#chatCell {
+    margin: 2px 0;
+    padding: 4px 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Choice Page */
+#choicepage{
+    margin: 30px 5%;
+    width: 275px; 
+}
+#choicepage h3{
+    padding: 30px;
+}
+#btngame1{
+    margin-top: 50px;
+}
+
+/* Game page content */
+#gamepage{
+    margin: 30px 5%;
+    width: 450px;
+    
+}
+#gametable{
+    display: flex;
+    margin: 15px 0;
+    justify-content: center;
+}
+td{
+    width: 40px;
+    height: 40px;
+    background-color: lightgray;
+}
+td:hover{
+    cursor: pointer;
+}
+
+
+/* Scrollbar Effects */
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: darkgrey;
+} 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: grey;
+}
