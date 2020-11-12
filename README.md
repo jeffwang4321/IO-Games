@@ -3,7 +3,7 @@
 - Browser based IO Games using Node.js and socket.io packets 
 - Mimic a client server environment using web sockets 
 - Client conenctions orgainzed into unique rooms and can run independently
-- Hosted example: https://chat-rooms-jeffwang.herokuapp.com/
+- Hosted example: https://io-games-jeff-wang.herokuapp.com/
 
 ## Features
 
