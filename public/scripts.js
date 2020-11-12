@@ -53,7 +53,7 @@ socket.on('startgood',function(){
     console.log('btnstart');
     joinpage.style.display = 'none';
     chatpage.style.display = 'block';
-    gamechoice.style.display = 'block';
+    choicepage.style.display = 'block';
     scorepage.style.display = 'block';
     
     // Set gameID, playerName & playerColor or default to random 4 digit gameID & Anonymous
@@ -72,7 +72,7 @@ function btngame1(){
 
 // Shows game1 page/ board
 socket.on('showgame',function(){
-    gamechoice.style.display = 'none';
+    choicepage.style.display = 'none';
     gamepage.style.display = 'block';
 });
 
@@ -147,7 +147,7 @@ socket.on('gameover', function(){
     }
     board = blankboard.slice();
     console.log(board, blankboard)
-    gamechoice.style.display = 'block';
+    choicepage.style.display = 'block';
     gamepage.style.display = 'none';
     socket.emit('resetpoints');
 });
