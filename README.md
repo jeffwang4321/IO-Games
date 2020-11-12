@@ -18,7 +18,7 @@ Game Features:
 - Blank tiles change to user color on click
 - Score tracking displays in real-time
 - Room connection for current room is disabled while game is in session
-- Room state & game displays automatically reset at the end of each round 
+- Room state & display automatically reset at the end of each round 
 - User disconnection, empty room state and multi-round edge cases tested 
 
 ## How to use
