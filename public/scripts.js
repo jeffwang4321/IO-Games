@@ -42,9 +42,10 @@ socket.on('ingame',function(){
 socket.on('startgood',function(){
     console.log('startgood');
     joinpage.style.display = 'none';
+    chaticon.style.display = 'block';
     chatpage.style.display = 'block';
     choicepage.style.display = 'block';
-    scorepage.style.display = 'block';
+    //scorepage.style.display = 'block'; (Dont show score yet)
 
     // Set gameID, playerName & playerColor or default to random 4 digit gameID & Anonymous
     var data = {
@@ -63,6 +64,20 @@ socket.on('updatechatinfo',function(numUsers, gameid){
 
 
 /******************* Chat Functions *******************/
+var chaton = true;
+//Btn click - chattoggle (Show / Hide chatpage)
+function chattoggle(){
+    if(chaton === true){
+        chatpage.style.display = 'none';
+        // socket.emit('sendMsgToServer', " disabled their chat ***");
+        chaton = false;
+    } else {
+        chatpage.style.display = 'block';
+        // socket.emit('sendMsgToServer', " enabled their chat ***");
+        chaton = true;
+    }
+}
+
 //Btn click - send (Calls server to send chat, server checks rooms)
 chatform.onsubmit = function(e){
     //prevent the form from refreshing the page
@@ -127,6 +142,7 @@ function btngame1(){
 socket.on('showgame1',function(){
     choicepage.style.display = 'none';
     game1page.style.display = 'block';
+    scorepage.style.display = 'block'; //Show score after a game has started here
     scoretext.innerHTML =""; //Empty previous scores
 });
 
@@ -186,6 +202,7 @@ function btngame2(){
 socket.on('showgame2',function(prompt){
     choicepage.style.display = 'none';
     game2page.style.display = 'block';
+    scorepage.style.display = 'block';
     game2prompt.innerHTML = prompt;
     scoretext.innerHTML =""; //Empty previous scores
 });
@@ -201,10 +218,10 @@ socket.on('shownext',function(prompt){
 });
 
 // Reveal? work in progress...
-function btnreveal(){
-    console.log("Hit")
-    // socket.emit('serverreveal'); 
-}
+// function btnreveal(){
+//     console.log("Hit")
+//     // socket.emit('serverreveal'); 
+// }
 
 // socket.on('reveal',function(){
 //     var cell = document.getElementsByClassName('game2Cell');
