@@ -15,11 +15,25 @@ Chat Features:
 - Chatroom tracks the number of connected users, player name & color 
 
 Game Features:
-- Blank tiles change to user color on click
 - Score tracking displays in real-time
 - Room connection for current room is disabled while game is in session
 - Room state & display automatically reset at the end of each round 
 - User disconnection, empty room state and multi-round edge cases tested 
+- Blank tiles change to user color on click (Spam Colors)
+- Interactive answer prompts display after user input (Party Blanks)
+
+## How to PLay
+
+Spam Colors:
+- Click the blank tiltes to get +1 point
+- Game end when all 100 tiles have been clicked
+- Click the most tiles to win!
+
+Party Blanks:
+- Each player takes turns reading the prompt until the the end of game
+- Remaining players have 1 chance to answer the prompt
+- Once remaining players have answered, highlight the answer bubbles to read
+- Prompt reader then selects their favourite answer for +1 point!
 
 ## How to use
 
@@ -27,7 +41,10 @@ Game Features:
 $ npm ci
 $ npm start
 ```
-
-Point your browser to http://localhost:8080
+Local testing:
+- Point your browser tabs to http://localhost:8080
+Multiplayer testing:
+- Forward port 8080 via router settings
+- Point to public IPv4 Address http://ipaddress:8080 
 
 
