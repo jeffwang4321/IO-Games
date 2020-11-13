@@ -22,10 +22,25 @@ function btncolor(){
     document.getElementById('btncolor').style.background=randomColor() 
 }
 
+// BAD needs more variety
 //Random pastel color function from: https://stackoverflow.com/questions/43193341/how-to-generate-random-pastel-or-brighter-color-in-javascript/43195379
-function randomColor(){ 
-    return "hsla(" + ~~(360 * Math.random()) + "," + "90%,"+ "80%,1)"
+// function randomColor(){ 
+//     return "hsla(" + ~~(360 * Math.random()) + "," + "90%,"+ "80%,1)"
+// }
+
+//Random Colors: https://stackoverflow.com/questions/5850590/random-color-generator-with-hue-saturation-and-more-controls
+function rand(min, max) {
+    return min + Math.random() * (max - min);
 }
+
+function randomColor(){
+    var h = rand(1, 360); // color hue between 1 and 360
+    var s = rand(30, 100); // saturation 30-100%
+    var l = rand(30, 80); // lightness 30-80%
+    var a = rand(30, 100); //alpha 30 - 100%
+    return 'hsla(' + h + ',' + s + '%,' + l + '%,' + a + '%)';
+}
+
 
 //Btn click - start (create/ join room & show chatpage)
 function btnstart(){

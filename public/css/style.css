@@ -36,6 +36,23 @@ body {
     cursor: pointer;
 }
 
+/* #git_button {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+} */
+#git_button{
+    text-decoration: none;
+    color: black;
+}
+#git_button i{
+    font-size: 30px;  
+    vertical-align: middle;
+}
+#git_button:hover i, #git_button:hover b{
+    color: grey;
+}
+
 
 
 /********************* Popup Menues *********************/
