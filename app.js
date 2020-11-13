@@ -66,7 +66,7 @@ io.sockets.on('connection', function(socket){
     // Send alert msg when player leaves the chat
     socket.on('disconnect',function(){  
         console.log(this.gameid)       
-        io.to(this.gameid).emit('addToChat', this.playername + " has left the chat", this.playercolor);
+        io.to(this.gameid).emit('addToChat', "*** " + this.playername + " has left ***", this.playercolor);
         numClients[this.gameid]--;
         //Reset all values in room if empty
         if (numClients[this.gameid] === 0){
@@ -245,7 +245,7 @@ var PromptPool = [
     "Sorry, I can't wear a mask. I have a medical condition called _____",
     "Only ugly people gotta style. That's why I only wear _____",
     "It's not over until _____",
-    "Your momma so FAAAT she _____",
+    "Your momma so FAT she _____",
     "MFs talk about politics but don't know that _____",
     "I don't wanna die until _____",
     "If the _____ doesn't _____, I DON'T want it!",
@@ -271,24 +271,27 @@ var PromptPool = [
     "My guilty pleasure is _____",
     "What is something people do but NEVER talk about?",
     "All children know this, NEVER _____ ",
+    "One word to TRIGGER a Karen?",
+    "One word to TRIGGER a white man?",
     "Nothing PISSES off a Karen more than _____",
+    "Nothing TRIGGERS a vegan more than _____",
+    "Nothing disgraces an asian mother more than _____",
     "Asian kids all understand the pain of _____",
+    "Nothing makes an Asian parent more proud than _____",
     "That it! _____ was the final straw!",
     "If I had _____, I wouldn't have _____",
     "I don't believe in love, I only believe in _____",
     "Kids these days will never understand _____",
     "White privilege is when _____",
     "A black man and a white man where walking down the street when _____ ",
-    "Nothing disgraces an asian mother more than _____",
     "I gave up _____ for _____",
     "I HATE kids these days because _____",
     "Education is _____",
     "My favourite game to play is _____",
     "I love _____ in bed",
     "In order to please my parents I _____",
-    "Nothing makes an Asian parent more proud than _____",
     "First comes _____, then comes _____, finally comes _____ ",
-    "I just need _____ to be happy,",
+    "I just need _____ to be happy",
     "I used to _____ until _____",
     "I used to have friends until _____",
     "If I could go back to highschool, I would _____",
@@ -298,9 +301,9 @@ var PromptPool = [
     "What is a HUGE red flag?",
     "First date idea to TRAP your partner?",
     "I would start an OnlyFans but _____",
-    "Youtube video title that would POP off?",
+    "What Youtube video title that would POP off?",
     "Whats the last sentence you would say to your family before you died?",
-    "What is one thing you can't live without?",
+    "What can you not live without?",
     "It's EASY to make money, just _____"
     // "",
     // "",
