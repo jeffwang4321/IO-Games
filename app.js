@@ -8,9 +8,17 @@ console.log("Server started.");
 
 var numClients = {}; //key-value pair that stores the # of connected clients
 var ingame = {}; //key-value pair that stores T/F if the game is in session(T)
-var hit = {}; //key-value pair that stores the number of total hits in that room
+
+//Game all Variables
 var roomtocolor = {}; //key-value pair that stores all disctint colors in that room
 var colortopoints = {}; //key-value pair that stores the points of every distinct color (Wil be issue if 2 user have the same RGB)
+
+//Game1 Variables
+var hit = {}; //key-value pair that stores the number of total hits in that room
+
+//Game2 Variables
+var round = {}
+var PromptPoolAll = {}; 
 
 var io = require('socket.io')(server);
 io.sockets.on('connection', function(socket){
@@ -21,16 +29,8 @@ io.sockets.on('connection', function(socket){
     socket.playerpoints=0; 
     socket.emit('showtitle');
     console.log('New connection!');
-    
-    // Check if the game room is in session or full == 10
-    socket.on('checkroom',function(gameid){
-        if(ingame[gameid]===true || numClients[gameid]===10){
-            socket.emit('ingame');
-        } else {
-            socket.emit('startgood');     
-        }
-    });
 
+    /**************************** Room/ View Functions ****************************/
     // Create room or join room 
     socket.on('hostCreateNewGame',function(data){
         console.log('hostCreateNewGame' + '\n  Player: ' + data.playerName + ' joined game: ' + data.gameID );
@@ -54,11 +54,13 @@ io.sockets.on('connection', function(socket){
         io.to(data.gameID).emit('updatechatinfo', numClients[data.gameID], data.gameID);
     });
 
-
-    // Send message back to the game room 
-    socket.on('sendMsgToServer',function(msg){
-        console.log('Game id: ' + this.gameid + ' ' + this.playername + ": " + msg);
-        io.to(this.gameid).emit('addToChat', this.playername + ": " + msg, this.playercolor);
+    // Check if the game room is in session or full == 10
+    socket.on('checkroom',function(gameid){
+        if(ingame[gameid]===true || numClients[gameid]===10){
+            socket.emit('ingame');
+        } else {
+            socket.emit('startgood');     
+        }
     });
 
     // Send alert msg when player leaves the chat
@@ -74,21 +76,30 @@ io.sockets.on('connection', function(socket){
             roomtocolor[this.gameid] = [];
             hit[this.gameid] = 0;
             ingame[this.gameid] = false;
+            round[this.gameid] = 0;
+            PromptPoolAll[this.gameID] = [];
         }
 
         //Update the total user count for display
         io.to(this.gameid).emit('updatechatinfo', numClients[this.gameid], this.gameid);
     });
 
+    /**************************** Chat Functions ****************************/
+    // Send message back to the game room 
+    socket.on('sendMsgToServer',function(msg){
+        console.log('Game id: ' + this.gameid + ' ' + this.playername + ": " + msg);
+        io.to(this.gameid).emit('addToChat', this.playername + ": " + msg, this.playercolor);
+    });
+    
 
+    /**************************** Game1 Functions ****************************/
     // Shows game page, initialize game room variables
-    socket.on('severshowgame',function(){
+    socket.on('servershowgame1',function(){
         ingame[this.gameid] = true;
         hit[this.gameid] = 0;
-        io.to(this.gameid).emit('showgame');
+        io.to(this.gameid).emit('showgame1');
     });
 
-   
     // Send back player color to client
     socket.on('getcolor',function(tdid){
         ++hit[this.gameid];
@@ -113,7 +124,7 @@ io.sockets.on('connection', function(socket){
 
         //End game if all tiles hit, reset game room variables
         if(hit[this.gameid] === 100){
-            io.to(this.gameid).emit('gameover');
+            io.to(this.gameid).emit('game1over');
             for (i in roomtocolor[this.gameid]){
                 colortopoints[roomtocolor[this.gameid][i]] = 0;
             }
@@ -128,8 +139,193 @@ io.sockets.on('connection', function(socket){
         this.playerpoints = 0;
     });
 
+    /**************************** Game2 Functions ****************************/
+    // Shows game page, initialize game room variables
+    socket.on('servershowgame2',function(){
+        ingame[this.gameid] = true;
+        round[this.gameid] = 0;
+        PromptPoolAll[this.gameid] = shuffle(PromptPool).slice();
+        io.to(this.gameid).emit('showgame2', PromptPoolAll[this.gameid][round[this.gameid]]);
+    });
+
+    // Skip the prompt for all, reset board
+    socket.on('servernext',function(){
+        ++round[this.gameid];
+        io.to(this.gameid).emit('shownext', PromptPoolAll[this.gameid][round[this.gameid]]);
+        io.to(this.gameid).emit('resetgame2');
+    });
+
+    // Send message back to the game room 
+    socket.on('sendgame2ToServer',function(msg){
+        console.log('Game id: ' + this.gameid + ' ' + this.playername + ": " + msg +" , " + this.playercolor);
+        io.to(this.gameid).emit('addTogame2', msg, this.playercolor);
+    });
+
+    // Reveal answers
+    // socket.on('serverreveal',function(){
+    //     io.to(this.gameid).emit('reveal');
+    // });
+
+    // All player score for game 2
+    socket.on('scoregame2',function(msg){
+        ++this.playerpoints;
+        colortopoints[this.playercolor] = this.playerpoints;
+
+        //Initialize if roomtocolor does not contain game id as key, set roomtocolor[this.gameid] to empty list
+        if (!(this.gameid in roomtocolor)){
+            roomtocolor[this.gameid] = [];
+        }
+        //Append color if roomtocolor[this.gameid] does not have the color
+        if (!(roomtocolor[this.gameid].includes(this.playercolor))){
+            roomtocolor[this.gameid].push(this.playercolor);
+        }
+        io.to(this.gameid).emit('addToScore', roomtocolor[this.gameid], colortopoints);
+        ++round[this.gameid];
+        io.to(this.gameid).emit('shownext', PromptPoolAll[this.gameid][round[this.gameid]]);
+        io.to(this.gameid).emit('resetgame2');
+    });
+
+    // Game over to all players, reset
+    socket.on('servergame2over',function(){
+        io.to(this.gameid).emit('game2over');
+            for (i in roomtocolor[this.gameid]){
+                colortopoints[roomtocolor[this.gameid][i]] = 0;
+            }
+            ingame[this.gameid] = false;
+            roomtocolor[this.gameid] = [];
+            round[this.gameid] = 0;
+            PromptPoolAll[this.gameID] = [];
+    });  
 });
 
+
+/*
+ * Javascript implementation of Fisher-Yates shuffle algorithm
+ * http://stackoverflow.com/questions/2450954/how-to-randomize-a-javascript-array
+ */
+function shuffle(array) {
+    var currentIndex = array.length;
+    var temporaryValue;
+    var randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+
+
+//Game 2 Prompts and shuffle function
+var PromptPool = [
+    "_____",
+    "Damn! Your mother is _____",
+    "_____ is the end of humanity!",
+    "Make _____ great again!",
+    "What is the hardest thing about life?",
+    "You are running for president, what is your slogan?",
+    "No... Don't kill yourself! You are so _____", 
+    "I swear to god _____ must perish!",
+    "Nobody ever _____ because _____",
+    "What is the meaning of life?",
+    "I would sacrifice _____ for _____",
+    "Before I die I must _____",
+    "I'm breaking up with you because _____",
+    "People are amazing because _____",
+    "No ABG is complete without _____",
+    "The Earth rumbles violently... _____ has awoken and the end was near!",
+    "The Pope said to his restless disciples, _____ and put them at ease",
+    "Little Timmy was hopeless, the chemo didn't work... His dying wish was for Travis Scott to _____",
+    "Despite making up only 12% of the population, _____",
+    "Sorry, I can't wear a mask. I have a medical condition called _____",
+    "Only ugly people gotta style. That's why I only wear _____",
+    "It's not over until the fat lady _____",
+    "Your momma so fat she _____",
+    "MFs talk about politics but don't know that _____",
+    "I don't wanna die until _____",
+    "If the _____ doesn't _____, I don't want it!",
+    "Nothing is more of a turn off than _____",
+    "What's worse than _____ is _____",
+    "I have a hundred reasons to _____",
+    "What can you say about milk, but not Drake's girlfriend?",
+    "What's a collab that would fail miserably?",
+    "Today was the day _____",
+    "Girls will _____, but _____",
+    "Honestly bro, I really just haven't felt fulfilment since _____",
+    "Listening to _____ just takes me back to a simpler time...",
+    "_____ cried for help, but _____ ",
+    "Is it still cheating if you _____?",
+    "MFs spend 1k on a phone but _____",
+    "During Covid, the best vacation spot is _____",
+    "Girls love it when _____",
+    "A sure fire way to be best friends is if you _____",
+    "Guys love it when _____",
+    "_____ is _____",
+    "*_____*  (He screams internally) ",
+    "My guilty pleasure is _____",
+    "What is something people do but nver talk about?",
+    "All children know this, never _____ ",
+    "Nothing pisses off a Karen more than _____",
+    "Asian kids all understand the pain of _____",
+    "That it! _____ was the final straw!",
+    "If I had _____, I wouldn't have _____",
+    "I don't believe in love, I only believe in _____",
+    "Kids these days will never understand _____",
+    "Peak white privilege is when _____",
+    "A black man and a white man where walking down the street when _____ ",
+    "Nothing disgraces an asian mother more than _____",
+    "I gave up _____ for _____",
+    "I hate kids these days because _____",
+    "Education is _____",
+    "My favourite game to play is _____",
+    "I love _____ in bed",
+    "In order to please my parents I _____",
+    "Nothing makes an Asian parent more proud than _____",
+    "First comes _____, then comes _____, finally comes _____ ",
+    "I just need _____ to be happy,",
+    "I used to _____ until _____",
+    "I used to have friends until _____",
+    "If I could go back to highschool, I would _____",
+    "If I could go back in time, I would _____",
+    "What is one thing you would change about the world?",
+    "What is your one and only wish?",
+    "What is your biggest red flag?",
+    "Best first date idea to trap your partner?",
+    "I would start an Only Fans but _____",
+    "Youtube video title that would pop off?",
+    "The last sentence you would say to your family before you died.",
+    "What is one thing you can't live without?",
+    "It's easy to make money, just _____"
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // "",
+    // ""
+]
 
 
   
