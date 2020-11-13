@@ -43,6 +43,7 @@ $ npm start
 ```
 Local testing:
 - Point your browser tabs to http://localhost:8080
+
 Multiplayer testing:
 - Forward port 8080 via router settings
 - Point to public IPv4 Address http://ipaddress:8080 
