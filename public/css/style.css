@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: "Quicksand";
+    font-family: 'Open Sans', sans-serif;
 }
 body {
     display: flex;
@@ -10,7 +10,85 @@ body {
     justify-content: center;
 }
 
-/* Title & Join page */
+/********************* Help Menu to popup *********************/
+#help{
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.bxs-help-circle:hover{
+    color: red;
+    cursor: pointer;
+}
+
+.bxs-help-circle{
+    text-decoration: none;
+    color: black;
+}
+
+
+/********************* Popup Menues *********************/
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+  
+.popup {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: 5% auto;
+    padding: 40px;
+    background: #fff;
+    width: 80%;
+    border-radius: 20px;
+}
+.popup .close {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+.popup .close:hover {
+    color: red;
+}
+
+.content{
+    max-height: 100%;
+    overflow: auto;
+}
+.content h2 {
+    padding-bottom: 5px;
+}
+.content li{
+    padding: 0 10px 10px 10px;  
+}
+.content b{
+    font-size: 15px;
+}
+.content p{
+    padding-bottom: 10px;
+}
+
+/********************* Title & Join page *********************/
 #titlepage, #joinpage{
     display: none;
     margin: 100px;
@@ -28,7 +106,7 @@ body {
     height: 30px;
 }
 
-/* Buttons */
+/********************* Buttons *********************/
 .btn, button{
     height: 30px;
     background:#4070F4;
@@ -55,19 +133,23 @@ button{
 }
 
 #btncolor{
-    padding: 1px;
+    /* padding: 1px; */
     font-size: 25px;
 }
 
-
-/* Chat, choice, game & score page */
-#chatpage, #choicepage, #gamepage, #scorepage{
+/********************* Chat, choice, game & score page *********************/
+#chatpage, #choicepage, #scorepage, #game1page {
     display: none;
-    margin: 30px 0;
+    margin: 35px 0;
     height: 450px;
     background:  white;
     border-radius: 15px;
-    box-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+#game2page{
+    display: none;
     text-align: center;
 }
 
@@ -75,7 +157,7 @@ button{
 #chatpage, #scorepage{
     width: 275px;
 }
-#chattext, #scoretext {
+#chattext, #scoretext{
     margin: 3px auto 9px;
     width: 90%;
     background: lightgray;
@@ -97,24 +179,26 @@ button{
     margin: 2px 0;
     padding: 4px 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.8);
 }
 
 /* Choice Page */
 #choicepage{
-    margin: 30px 5%;
+    margin: 35px 3%;
     width: 275px; 
 }
 #choicepage h3{
     padding: 30px;
 }
-#btngame1{
+#btngame1, #btngame2{
     margin-top: 50px;
 }
 
-/* Game page content */
-#gamepage{
-    margin: 30px 5%;
+
+/********************* Game Contents *********************/
+/* Game1 page content */
+#game1page, #game2page{
+    margin: 35px 3%;
     width: 450px;
     
 }
@@ -132,8 +216,46 @@ td:hover{
     cursor: pointer;
 }
 
+/* Game2 page content */
+#game2prompt{
+    padding: 10px;
+    color: white;
+    background:  black;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+    text-align: center;
+}
 
-/* Scrollbar Effects */
+#btnreveal, #btnnext{
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
+#game2Cell {
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+    background: white;
+    color: white;
+}
+
+.bxs-check-circle{
+    margin-top: -3px;
+    margin-right: -3px;
+    float: right;
+    font-size: 30px;
+    color: #4070F4;
+}
+
+.bxs-check-circle:hover{
+    cursor: pointer;
+    color: gray;
+}
+
+
+/********************* Scrollbar Effects *********************/
 /* width */
 ::-webkit-scrollbar {
     width: 4px;
