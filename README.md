@@ -29,12 +29,15 @@ Spam Colors:
 - Click the blank tiltes to get +1 point
 - Game end when all 100 tiles have been clicked
 - Click the most tiles to win!
+![](public/img/game1.png)
 
 Party Blanks:
-- Each player takes turns reading the prompt until the the end of game
+- Each player takes turns reading the prompt
 - Remaining players have 1 chance to answer the prompt
 - Once remaining players have answered, highlight the answer bubbles to read
-- Prompt reader then selects their favourite answer for +1 point!
+- Prompt reader then checks their favourite answer for +1 point!
+- Option to skip bad prompts or end the game
+![](public/img/game2.png)
 
 ## How to use
 
