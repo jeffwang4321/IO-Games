@@ -10,7 +10,7 @@ body {
     justify-content: center;
 }
 
-/********************* Help Menu to popup *********************/
+/********************* Help & Chat Menu to popup *********************/
 #help{
     position: absolute;
     top: 1%;
@@ -18,16 +18,24 @@ body {
     font-size: 30px;
     font-weight: bold;
 }
-
-.bxs-help-circle:hover{
-    color: red;
-    cursor: pointer;
+#chaticon{
+    display: none;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    font-size: 30px;
+    font-weight: bold;
 }
 
-.bxs-help-circle{
+.bxs-help-circle, .bxs-message-detail{
     text-decoration: none;
     color: black;
 }
+.bxs-help-circle:hover, .bxs-message-detail:hover{
+    color: #4070F4;
+    cursor: pointer;
+}
+
 
 
 /********************* Popup Menues *********************/
@@ -54,7 +62,7 @@ body {
     top: 0; left: 0; bottom: 0; right: 0;
     margin: 5% auto;
     padding: 40px;
-    background: #fff;
+    background: white;
     width: 80%;
     border-radius: 20px;
 }
