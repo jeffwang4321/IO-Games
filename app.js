@@ -223,7 +223,7 @@ function shuffle(array) {
 
 //Game 2 Prompts and shuffle function
 var PromptPool = [
-    "_____",
+    "(Type ANYTHING to win the vote!)",
     "DAMN! Your mother is _____",
     "_____ is the end of humanity!",
     "_____ made _____ GREAT again!",
