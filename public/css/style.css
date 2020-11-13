@@ -168,12 +168,15 @@ button{
 }
 
 #scoretext{
-    height: calc(84% + 30px);
+    height: calc(83% + 30px);
 }
 #gameidtext{
     padding-top: 4px;
     height: 30px;
     overflow: hidden;
+}
+#scorepage h3{
+    padding-top: 4px;
 }
 #chatCell {
     margin: 2px 0;
@@ -188,7 +191,11 @@ button{
     width: 275px; 
 }
 #choicepage h3{
-    padding: 30px;
+    padding: 4px 0 50px;
+    text-decoration: underline;
+}
+#choicepage h4{
+    padding: 0 10px;
 }
 #btngame1, #btngame2{
     margin-top: 50px;
