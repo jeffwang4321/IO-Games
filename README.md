@@ -13,6 +13,7 @@ Chat Features:
 - Users can send messages to other users in the room
 - A notification is sent when a user joins or leaves the room
 - Chatroom tracks the number of connected users, player name & color 
+- Users can toggle chat display to show or hide chat
 
 Game Features:
 - Score tracking displays in real-time
