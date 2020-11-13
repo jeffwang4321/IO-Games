@@ -6,12 +6,53 @@
         <!-- Icons -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
         <!-- Google Font -->
-        <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
         <link href="css/style.css" rel="stylesheet">
     </head>
 
     <body>
+        <!-- Help Popup Hidden-->
+        <div id="help"><a class="popup-button" href="#popup_help"><i class='bx bxs-help-circle'></i></a></div>
+
+        <div id="popup_help" class="overlay">
+            <div class="popup">
+                <a class="close" href="##">×</a>
+                <div class="content">
+                    <p><b>Instructions</b>&#160; - How to Play</p>
+                    <p><b>Spam Colors</b></p>
+                    <ul>
+                        <li>
+                            •&#160; Click the blank tiltes to get +1 point
+                        </li>
+                        <li>
+                            •&#160; Game end when all 100 tiles have been clicked
+                        </li>
+                        <li>
+                            •&#160; Click the most tiles to win!
+                        </li>
+                    </ul>
+
+                    <p><b>Party Blanks</b></p>
+                    <ul>
+                        <li>
+                            •&#160; Each player takes turns reading the prompt until the "End Game" button
+                        </li>
+                        <li>
+                            •&#160; Remaining players have 1 chance to answer the prompt
+                        </li>
+                        <li>
+                            •&#160; Once remaining players have answered, highlight the answer bubbles to read 
+                        </li>
+                        <li>
+                            •&#160; Prompt reader then selects their favourite answer for +1 point!
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- Title Page -->
         <div id="titlepage">
             <div id="titlecontent">
@@ -50,12 +91,13 @@
         <!-- Choice Page -->
         <div id="choicepage">
             <h3>Please wait for all players to join</h3>
-            <button id="btngame1" onclick="btngame1()">Start Game 1</button>
+            <button id="btngame1" onclick="btngame1()">Spam Colors</button>
+            <button id="btngame2" onclick="btngame2()">Party Blanks</button>
         </div>
 
-        <!-- Game Page --> 
+        <!-- Game1 Page --> 
         <!-- Game Table looks really inefficient, looking to use jquerry in future versions for simplicity-->
-        <div id="gamepage">
+        <div id="game1page">
         <div id = "gametable">
             <table >
                 <tr>
@@ -127,6 +169,18 @@
                 </tr>
             </table>
         </div>
+        </div>
+
+        <!-- Game2 Page -->
+        <div id="game2page">
+            <div id="game2prompt">Test</div>
+            <button id="btngame2over" onclick="btngame2over()">End Game</button>
+            <button id="btnnext" onclick="btnnext()">Skip</button>
+            <div id="game2text"></div>
+            <form id="game2form">
+                <input id="game2input" style="width:76%; height:30px;" autocomplete="off" type="text" /> 
+                <input class="btn" type="submit" value="Send" />
+            </form>
         </div>
 
         <!-- Score Page -->
