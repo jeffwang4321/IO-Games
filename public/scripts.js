@@ -222,7 +222,7 @@ socket.on('showgame2',function(prompt){
     scoretext.innerHTML =""; //Empty previous scores
 });
 
-// ASk server to show next prompt
+// Ask server to show next prompt
 function btnnext(){
     socket.emit('servernext'); 
 }
