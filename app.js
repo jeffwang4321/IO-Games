@@ -162,9 +162,9 @@ io.sockets.on('connection', function(socket){
     });
 
     // Reveal answers
-    // socket.on('serverreveal',function(){
-    //     io.to(this.gameid).emit('reveal');
-    // });
+    socket.on('serverreveal',function(){
+        io.to(this.gameid).emit('reveal');
+    });
 
     // All player score for game 2
     socket.on('scoregame2',function(color){
