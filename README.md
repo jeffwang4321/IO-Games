@@ -26,7 +26,7 @@ Game Features:
 ## How to PLay
 
 Spam Colors:
-- Click the blank tiltes to get +1 point
+- Click the blank tiles to get +1 point
 - Game end when all 100 tiles have been clicked
 - Click the most tiles to win!
 ![](public/img/game1.png)
