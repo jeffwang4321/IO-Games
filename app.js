@@ -167,17 +167,17 @@ io.sockets.on('connection', function(socket){
     // });
 
     // All player score for game 2
-    socket.on('scoregame2',function(msg){
-        ++this.playerpoints;
-        colortopoints[this.playercolor] = this.playerpoints;
+    socket.on('scoregame2',function(color){
+        //++this.playerpoints;
+        ++colortopoints[color];
 
         //Initialize if roomtocolor does not contain game id as key, set roomtocolor[this.gameid] to empty list
         if (!(this.gameid in roomtocolor)){
             roomtocolor[this.gameid] = [];
         }
         //Append color if roomtocolor[this.gameid] does not have the color
-        if (!(roomtocolor[this.gameid].includes(this.playercolor))){
-            roomtocolor[this.gameid].push(this.playercolor);
+        if (!(roomtocolor[this.gameid].includes(color))){
+            roomtocolor[this.gameid].push(color);
         }
         io.to(this.gameid).emit('addToScore', roomtocolor[this.gameid], colortopoints);
         ++round[this.gameid];
@@ -195,6 +195,7 @@ io.sockets.on('connection', function(socket){
             roomtocolor[this.gameid] = [];
             round[this.gameid] = 0;
             PromptPoolAll[this.gameID] = [];
+            io.to(this.gameid).emit('resetgame2');
     });  
 });
 
