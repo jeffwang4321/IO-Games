@@ -168,7 +168,9 @@ io.sockets.on('connection', function(socket){
 
     // All player score for game 2
     socket.on('scoregame2',function(color){
-        //++this.playerpoints;
+        if(colortopoints[color] === undefined){
+            colortopoints[color] = 0;
+        }
         ++colortopoints[color];
 
         //Initialize if roomtocolor does not contain game id as key, set roomtocolor[this.gameid] to empty list
