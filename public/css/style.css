@@ -36,11 +36,6 @@ body {
     cursor: pointer;
 }
 
-/* #git_button {
-    font-size: 20px;
-    text-decoration: none;
-    color: black;
-} */
 #git_button{
     text-decoration: none;
     color: black;
@@ -52,7 +47,6 @@ body {
 #git_button:hover i, #git_button:hover b{
     color: grey;
 }
-
 
 
 /********************* Popup Menues *********************/
@@ -147,9 +141,14 @@ body {
     width: 20%;
 }
 
-button{
+#btnjoin, #btncolor, #btnstart, #btngame1, #btngame2{
     margin: 5px;
     width: 130px;
+}
+
+#btngame2over, #btnreaveal, #btnnext{
+    margin: 5px;
+    width: 100px;
 }
 
 .btn:hover, button:hover{
@@ -263,6 +262,10 @@ td:hover{
     margin-bottom: 13px;
 }
 
+#game2text{
+    display: none;
+}
+
 #game2Cell {
     margin-bottom: 15px;
     padding: 5px;
@@ -270,7 +273,7 @@ td:hover{
     border-radius: 15px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
     background: white;
-    color: white;
+    color: black;
 }
 
 .bxs-check-circle{
@@ -285,6 +288,7 @@ td:hover{
     cursor: pointer;
     color: gray;
 }
+
 
 
 /********************* Scrollbar Effects *********************/

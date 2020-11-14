@@ -230,21 +230,20 @@ function btnnext(){
 // Show next prompt / next round
 socket.on('shownext',function(prompt){
     game2prompt.innerHTML = prompt;
+    game2text.style.display = 'none';
+    game2fake.style.display = 'block';
 });
 
 // Reveal? work in progress...
-// function btnreveal(){
-//     console.log("Hit")
-//     // socket.emit('serverreveal'); 
-// }
+function btnreveal(){
+    console.log("Hit")
+    socket.emit('serverreveal'); 
+}
 
-// socket.on('reveal',function(){
-//     var cell = document.getElementsByClassName('game2Cell');
-//     if (cell){
-//         console.log("btnrevealhit")
-//         cell.style.color = 'black';
-//     }  
-// });
+socket.on('reveal',function(){
+    game2text.style.display = 'block';
+    game2fake.style.display = 'none';
+});
 
 // Answer Function
 //Btn click - send (Calls server to send chat, server checks rooms)
@@ -261,9 +260,10 @@ game2form.onsubmit = function(e){
 //Add a chat cell to our chat list view (Distinct client colors included!), and scroll to the bottom 
 socket.on('addTogame2',function(msg, playercolor){
     console.log('got an answer + color: ', playercolor);
-
     game2text.innerHTML += '<div id="game2Cell">' + msg + '<i class="bx bxs-check-circle" onclick="cellclick(' + "'" + playercolor + "'" + ');"></i></div>';    
-    game2text.scrollTop = game2text.scrollHeight;   
+    game2text.scrollTop = game2text.scrollHeight;  
+    game2fake.innerHTML += '<div id="game2Cell"><b>? ? ?</b></div>'; 
+    game2fake.scrollTop = game2fake.scrollHeight;  
 });
 
 // Btn click - Answer cell (Sends the node id and gets player color)
@@ -275,6 +275,7 @@ function cellclick(color){
 // Reset the anser input for next rounds
 socket.on('resetgame2',function(){
     game2text.innerHTML = "";
+    game2fake.innerHTML = "";
     game2form.innerHTML = '<input id="game2input" style="width:69%; height:30px;" autocomplete="off" type="text" /> <input class="btn" type="submit" value="Send" />';
 });
 
@@ -287,6 +288,8 @@ function btngame2over(){
 socket.on('game2over', function(){
     choicepage.style.display = 'block';
     game2page.style.display = 'none';
+    game2text.style.display = 'none';
+    game2fake.style.display = 'block';
     socket.emit('resetpoints');
 });
 
