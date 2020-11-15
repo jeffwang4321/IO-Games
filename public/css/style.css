@@ -300,7 +300,7 @@ td:hover{
     color: #ff4e4e;
 }
 
-#game3Cell, #game3Cell2{
+.game3Cell, #game3Cell2{
     margin-bottom: 15px;
     padding: 5px;
     width: 100%;
@@ -310,7 +310,7 @@ td:hover{
     color: black;
 }
 
-#game3Cell:hover{
+.game3Cell:hover{
     cursor: pointer;
 }
 

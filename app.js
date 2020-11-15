@@ -65,7 +65,7 @@ io.sockets.on('connection', function(socket){
 
     // Send alert msg when player leaves the chat
     socket.on('disconnect',function(){  
-        console.log(this.gameid)       
+        // console.log(this.gameid)       
         io.to(this.gameid).emit('addToChat', "*** " + this.playername + " has left ***", this.playercolor);
         numClients[this.gameid]--;
         //Reset all values in room if empty
@@ -204,6 +204,7 @@ io.sockets.on('connection', function(socket){
     // Shows game page, initialize game room variables
     socket.on('servershowgame3',function(){
         ingame[this.gameid] = true;
+        round[this.gameid] = 0;
         io.to(this.gameid).emit('showgame3');
     });
 
@@ -223,11 +224,13 @@ io.sockets.on('connection', function(socket){
 
     // Send heart back to the game room 
     socket.on('sendg3ToServer', function(msg){
-        io.to(this.gameid).emit('addTogame3', msg, this.playercolor);
+        ++round[this.gameid];
+        io.to(this.gameid).emit('addTogame3', msg, this.playercolor, round[this.gameid]);
     });
 
     // All player score for game 2
     socket.on('flipgame3',function(msg, thisbtn){
+        console.log("flip3: ", msg, thisbtn);
         if(msg === 'skull'){
             // console.log('skull');
             // --this.playerpoints;
@@ -270,6 +273,7 @@ io.sockets.on('connection', function(socket){
 
     // Skip reset board
     socket.on('serverg3next',function(){
+        round[this.gameid] = 0;
         io.to(this.gameid).emit('resetgame3');
     });
 

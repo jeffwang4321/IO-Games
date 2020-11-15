@@ -354,16 +354,16 @@ function btnskull(){
 }
 
 //Add a chat cell to our chat list view (Distinct client colors included!), and scroll to the bottom 
-socket.on('addTogame3',function(msg, playercolor){
-    console.log('got an answer + color: ', playercolor);
-    game3fake.innerHTML += '<div id="game3Cell" style="color:' +  playercolor+ ';" onclick="g3click(' + "'" + msg + "', this" + ');"><b>? ? ?</b></div>'; 
+socket.on('addTogame3',function(msg, playercolor, i){
+    console.log('got an answer + color: ', playercolor, i);
+    game3fake.innerHTML += '<div id ="g' + i + '" class="game3Cell" style="color:' +  playercolor+ ';" onclick="g3click(' + "'" + msg + "', 'g" + i + "');" + '"><b>? ? ?</b></div>'; 
     game3fake.scrollTop = game2fake.scrollHeight;  
 });
 
 function g3click(msg, thisbtn){
     // console.log("Clicked cell: ", msg, thisbtn);
     socket.emit('flipgame3', msg, thisbtn);
-    thisbtn.style.display = "none";
+    // thisbtn.style.display = "none";
     if (msg == 'heart'){
         g3score = 1;
     }
@@ -373,7 +373,8 @@ function g3click(msg, thisbtn){
 }   
 
 socket.on('flipclient',function(msg, thisbtn){
-    // thisbtn.style.display = "none";
+    console.log("flipclient: ", msg, thisbtn);
+    document.getElementById(thisbtn).style.display = "none";
     game3text.innerHTML += '<div id="game3Cell2"><i class="bx bxs-' + msg + '"></i></div>'; 
     game3text.scrollTop = game2text.scrollHeight;  
 });
