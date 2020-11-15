@@ -22,12 +22,6 @@ function btncolor(){
     document.getElementById('btncolor').style.background=randomColor() 
 }
 
-// BAD needs more variety
-//Random pastel color function from: https://stackoverflow.com/questions/43193341/how-to-generate-random-pastel-or-brighter-color-in-javascript/43195379
-// function randomColor(){ 
-//     return "hsla(" + ~~(360 * Math.random()) + "," + "90%,"+ "80%,1)"
-// }
-
 //Random Colors: https://stackoverflow.com/questions/5850590/random-color-generator-with-hue-saturation-and-more-controls
 function rand(min, max) {
     return min + Math.random() * (max - min);
@@ -272,13 +266,6 @@ function cellclick(color){
     socket.emit('scoregame2', color);
 }
 
-// Reset the anser input for next rounds
-socket.on('resetgame2',function(){
-    game2text.innerHTML = "";
-    game2fake.innerHTML = "";
-    game2form.innerHTML = '<input id="game2input" style="width:69%; height:30px;" autocomplete="off" type="text" /> <input class="btn" type="submit" value="Send" />';
-});
-
 // Ask server to emit game over
 function btngame2over(){
     socket.emit('servergame2over');
@@ -293,6 +280,106 @@ socket.on('game2over', function(){
     socket.emit('resetpoints');
 });
 
+// Reset the anser input for next rounds
+socket.on('resetgame2',function(){
+    game2text.innerHTML = "";
+    game2fake.innerHTML = "";
+    game2form.innerHTML = '<input id="game2input" style="width:69%; height:30px;" autocomplete="off" type="text" /> <input class="btn" type="submit" value="Send" />';
+});
+
+/******************* Game3 (Hearts & Skulls) - Variables and Functions *******************/
+var numheart = 0;
+var numskull = 0;
+var g3score = 0; 
+
+// Btn click - game3 (check with server to show game1)
+function btngame3(){
+    socket.emit('servershowgame3'); 
+}
+
+// Shows game2 page/ board
+socket.on('showgame3',function(prompt){
+    choicepage.style.display = 'none';
+    game3page.style.display = 'block';
+    scorepage.style.display = 'block';
+    scoretext.innerHTML =""; //Empty previous scores
+});
 
 
+// Btn click - End game3 (Ask server to emit game over)
+function btngame3over(){
+    socket.emit('servergame3over');
+}
 
+// Game over, reset game state and page displays
+socket.on('game3over', function(){
+    choicepage.style.display = 'block';
+    game3page.style.display = 'none';
+    // game3text.style.display = 'block';
+    // game3fake.style.display = 'block';
+    socket.emit('resetpoints');
+});
+
+// Reset the anser input for next rounds
+socket.on('resetgame3',function(){
+    game3text.innerHTML = "";
+    game3fake.innerHTML = "";
+    numheart = 0;
+    numskull = 0;
+    g3score = 0; 
+    btnskulls.style.background = '#4070F4';
+    btnhearts.style.background = '#4070F4';
+});
+
+// Btn click - heart
+function btnheart(){
+    if(numheart < 2){
+        ++numheart;
+        socket.emit('sendg3ToServer', 'heart');
+    }
+    if(numheart == 2){
+        btnhearts.style.background = 'grey';
+    }
+}
+
+// Btn click - skull
+function btnskull(){
+    if(numskull < 2){
+        ++numskull;
+        socket.emit('sendg3ToServer', 'skull');
+    } 
+    if(numskull == 2){
+        btnskulls.style.background = 'grey';
+    }
+}
+
+//Add a chat cell to our chat list view (Distinct client colors included!), and scroll to the bottom 
+socket.on('addTogame3',function(msg, playercolor){
+    console.log('got an answer + color: ', playercolor);
+    game3fake.innerHTML += '<div id="game3Cell" style="color:' +  playercolor+ ';" onclick="g3click(' + "'" + msg + "', this" + ');"><b>? ? ?</b></div>'; 
+    game3fake.scrollTop = game2fake.scrollHeight;  
+});
+
+function g3click(msg, thisbtn){
+    // console.log("Clicked cell: ", msg, thisbtn);
+    socket.emit('flipgame3', msg, thisbtn);
+    thisbtn.style.display = "none";
+    if (msg == 'heart'){
+        g3score = 1;
+    }
+    if (msg == 'skull'){
+        g3score = -1;
+    }
+}   
+
+socket.on('flipclient',function(msg, thisbtn){
+    // thisbtn.style.display = "none";
+    game3text.innerHTML += '<div id="game3Cell2"><i class="bx bxs-' + msg + '"></i></div>'; 
+    game3text.scrollTop = game2text.scrollHeight;  
+});
+
+// Btn click - End game3 (Ask server to emit game over)
+function btng3next(){
+    socket.emit('serverg3next');
+    socket.emit('g3setscore', g3score)
+}

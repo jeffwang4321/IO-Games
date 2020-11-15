@@ -108,6 +108,7 @@
             <h4>Please wait for all players to join before starting</h4>
             <button id="btngame1" onclick="btngame1()">Spam Colors</button>
             <button id="btngame2" onclick="btngame2()">Party Blanks</button>
+            <button id="btngame3" onclick="btngame3()">Hearts & Skulls</button>
         </div>
 
         <!-- Game1 Page --> 
@@ -190,7 +191,7 @@
         <div id="game2page">
             <div id="game2prompt"></div>
             <button id="btngame2over" onclick="btngame2over()">End Game</button>
-            <button id="btnreaveal" onclick="btnreveal()">Reveal</button>
+            <button id="btnreveal" onclick="btnreveal()">Reveal</button>
             <button id="btnnext" onclick="btnnext()">Skip</button>
             <div id="game2text"></div>
             <div id="game2fake"></div>
@@ -198,6 +199,16 @@
                 <input id="game2input" style="width:76%; height:30px;" autocomplete="off" type="text" /> 
                 <input class="btn" type="submit" value="Send" />
             </form>
+        </div>
+
+        <!-- Game3 Page -->
+        <div id="game3page">
+            <button id="btngame3over" onclick="btngame3over()">End Game</button>
+            <button id="btnhearts" onclick="btnheart()"><i class='bx bxs-heart'></i></button>
+            <button id="btnskulls" onclick="btnskull()"><i class='bx bxs-skull'></i></button>
+            <button id="btng3next" onclick="btng3next()">Next</button>
+            <div id="game3fake"></div>
+            <div id="game3text"></div>
         </div>
 
         <!-- Score Page -->

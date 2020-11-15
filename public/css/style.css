@@ -141,14 +141,9 @@ body {
     width: 20%;
 }
 
-#btnjoin, #btncolor, #btnstart, #btngame1, #btngame2{
+#btnjoin, #btncolor, #btnstart, #btngame1, #btngame2, #btngame3{
     margin: 5px;
     width: 130px;
-}
-
-#btngame2over, #btnreaveal, #btnnext{
-    margin: 5px;
-    width: 100px;
 }
 
 .btn:hover, button:hover{
@@ -172,7 +167,7 @@ body {
     text-align: center;
 }
 
-#game2page{
+#game2page, #game3page{
     display: none;
     text-align: center;
 }
@@ -221,14 +216,14 @@ body {
 #choicepage h4{
     padding: 0 10px;
 }
-#btngame1, #btngame2{
+#btngame1, #btngame2, #btngame3{
     margin-top: 50px;
 }
 
 
 /********************* Game Contents *********************/
 /* Game1 page content */
-#game1page, #game2page{
+#game1page, #game2page, #game3page{
     margin: 35px 3%;
     width: 450px;
     
@@ -256,8 +251,11 @@ td:hover{
     box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
     text-align: center;
 }
-
-#btnreveal, #btnnext{
+#btngame2over, #btnreveal, #btnnext{
+    margin: 5px;
+    width: 75px;
+}
+#btnreveal{
     margin-top: 13px;
     margin-bottom: 13px;
 }
@@ -289,7 +287,32 @@ td:hover{
     color: gray;
 }
 
+/* Game3 page content */
+#btngame3over, #btnhearts, #btnskulls, #btng3next{
+    margin: 5px 5px 15px;
+    width: 75px;
+}
+#btnhearts, #btnskulls{
+    font-size: 25px;
+    vertical-align: top;
+}
+.bxs-heart{
+    color: #ff4e4e;
+}
 
+#game3Cell, #game3Cell2{
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+    background: white;
+    color: black;
+}
+
+#game3Cell:hover{
+    cursor: pointer;
+}
 
 /********************* Scrollbar Effects *********************/
 /* width */

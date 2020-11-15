@@ -199,6 +199,81 @@ io.sockets.on('connection', function(socket){
             PromptPoolAll[this.gameID] = [];
             io.to(this.gameid).emit('resetgame2');
     });  
+
+    /**************************** Game3 Functions ****************************/
+    // Shows game page, initialize game room variables
+    socket.on('servershowgame3',function(){
+        ingame[this.gameid] = true;
+        io.to(this.gameid).emit('showgame3');
+    });
+
+
+    // Game over to all players, reset
+    socket.on('servergame3over',function(){
+        io.to(this.gameid).emit('game3over');
+            for (i in roomtocolor[this.gameid]){
+                colortopoints[roomtocolor[this.gameid][i]] = 0;
+            }
+            ingame[this.gameid] = false;
+            roomtocolor[this.gameid] = [];
+            round[this.gameid] = 0;
+            PromptPoolAll[this.gameID] = [];
+            io.to(this.gameid).emit('resetgame3');
+    });  
+
+    // Send heart back to the game room 
+    socket.on('sendg3ToServer', function(msg){
+        io.to(this.gameid).emit('addTogame3', msg, this.playercolor);
+    });
+
+    // All player score for game 2
+    socket.on('flipgame3',function(msg, thisbtn){
+        if(msg === 'skull'){
+            // console.log('skull');
+            // --this.playerpoints;
+            // colortopoints[this.playercolor] = this.playerpoints;
+            io.to(this.gameid).emit('flipclient', msg, thisbtn);
+        } else {
+            // console.log('heart');
+            // --this.playerpoints;
+            // colortopoints[this.playercolor] = this.playerpoints;
+            io.to(this.gameid).emit('flipclient', msg, thisbtn);
+        }
+
+        // //Initialize if roomtocolor does not contain game id as key, set roomtocolor[this.gameid] to empty list
+        // if (!(this.gameid in roomtocolor)){
+        //     roomtocolor[this.gameid] = [];
+        // }
+        // //Append color if roomtocolor[this.gameid] does not have the color
+        // if (!(roomtocolor[this.gameid].includes(this.playercolor))){
+        //     roomtocolor[this.gameid].push(this.playercolor);
+        // }
+        // io.to(this.gameid).emit('addToScore', roomtocolor[this.gameid], colortopoints);
+    });
+
+    //set score for all players after next round is clicked
+    socket.on('g3setscore',function(score){
+        this.playerpoints += score;
+        colortopoints[this.playercolor] = this.playerpoints;
+
+        //Initialize if roomtocolor does not contain game id as key, set roomtocolor[this.gameid] to empty list
+        if (!(this.gameid in roomtocolor)){
+            roomtocolor[this.gameid] = [];
+        }
+        //Append color if roomtocolor[this.gameid] does not have the color
+        if (!(roomtocolor[this.gameid].includes(this.playercolor))){
+            roomtocolor[this.gameid].push(this.playercolor);
+        }
+        io.to(this.gameid).emit('addToScore', roomtocolor[this.gameid], colortopoints);
+    });
+
+
+    // Skip reset board
+    socket.on('serverg3next',function(){
+        io.to(this.gameid).emit('resetgame3');
+    });
+
+
 });
 
 
