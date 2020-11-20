@@ -24,7 +24,7 @@ Game Features:
 - Interactive answer prompts display after user input (Party Blanks)
 - Individual card type and info tracked and responsive to client interaction (Hearts & Skulls) 
 
-## How to PLay
+## How to Play
 
 Spam Colors:
 - Click the blank tiles to get +1 point
