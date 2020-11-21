@@ -65,7 +65,7 @@ io.sockets.on('connection', function(socket){
 
     // Send alert msg when player leaves the chat
     socket.on('disconnect',function(){  
-        // console.log(this.gameid)       
+        console.log("Game room: " + this.gameid + ", Player name: " + this.playername)       
         io.to(this.gameid).emit('addToChat', "*** " + this.playername + " has left ***", this.playercolor);
         numClients[this.gameid]--;
         //Reset all values in room if empty
