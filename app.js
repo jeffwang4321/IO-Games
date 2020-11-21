@@ -306,7 +306,7 @@ function shuffle(array) {
 //Game 2 Prompts and shuffle function
 var PromptPool = [
     "(Type ANYTHING to win the vote!)",
-    "DAMN! Your mother is _____",
+    // "DAMN! Your mother is _____",
     "_____ is the end of humanity!",
     "_____ made _____ GREAT again!",
     "What is the hardest thing about life?",
@@ -318,7 +318,7 @@ var PromptPool = [
     "I would sacrifice _____ for _____",
     "Before I die I must _____",
     "I'm breaking up with you because _____",
-    "People are amazing because _____",
+    "Dogs are amazing because _____",
     "No ABG is complete without _____",
     // "The Earth rumbles violently... _____ has awoken and the END was near!",
     // "The Pope said to his restless disciples, _____ and put them at ease",
@@ -327,19 +327,19 @@ var PromptPool = [
     "Sorry, I can't wear a mask. I have a medical condition called _____",
     "Only ugly people gotta style. That's why I only wear _____",
     "It's not over until _____",
-    // "Your momma so FAT she _____",
+    "Your momma so FAT she _____",
     "MFs talk about politics but don't know that _____",
     "I don't wanna die until _____",
     "If the _____ doesn't _____, I DON'T want it!",
     "Nothing is more of a turn off than _____",
     "What's worse than _____ is _____",
-    "I have a hundred reasons to _____",
+    "I have a hundred reasons to _____", //////////
     "What's a collab that would fail miserably?",
     "Today is the day _____",
     "Girls will _____, but _____",
     "Guys will do anything for _____",
     "In order to chase CLOUT kids these days will _____",
-    "Honestly bro... I really just haven't felt fulfilment since _____",
+    "Honestly bro... Things haven't been the same since _____",
     "Listening to _____ just takes me back to a simpler time...",
     "_____ cried for help, but _____ ",
     "Is it still cheating if you _____?",
@@ -355,6 +355,7 @@ var PromptPool = [
     "All children know this, NEVER _____ ",
     "How do you TRIGGER a Karen?",
     "How do you TRIGGER a white man?",
+    "How do you TRIGGER an SJW?",
     "Nothing PISSES off a Karen more than _____",
     "Nothing TRIGGERS a vegan more than _____",
     "Nothing disgraces an asian mother more than _____",
@@ -391,7 +392,7 @@ var PromptPool = [
     "The president reavealed a new crime bill. Effectively locking up _____",
     "The president reavealed a new bill. The _____",
     "Donald Trump is finally put in jail for _____",
-    "Its a quater after 1, I'm all alone and I _____",
+    "Its a quarter after 1, I'm all alone and I _____",
     "In 2021, the Try Guys try _____",
     "What do you do that triggers your partner?",
     "Most triggering thing about your partner?",
@@ -409,11 +410,13 @@ var PromptPool = [
     "In year 2050, _____",
     "Back in the 1700's _____",
     "Before Covid19 there was _____",
-    "Life during Wolrd War II was _____",
+    "Life during World War II was _____",
     "My Grandfather was _____",
     "_____ like _____",
     "_____ but _____",
-    "I would _____, however _____"
+    "I would _____, however _____",
+    "The only reason I failed no nut november is _____",
+    "My lovely partner is actually _____"
 ]
 
 
