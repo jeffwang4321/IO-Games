@@ -1,7 +1,7 @@
 # IO-Games
 
 - Browser based IO Games using Node.js and socket.io packets 
-- Mimic a client server environment using web sockets 
+- Mimicked a client server environment using web sockets 
 - Client connections organized into unique rooms and can run independently
 - Hosted example: https://io-games-jeff-wang.herokuapp.com/
 
