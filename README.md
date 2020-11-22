@@ -49,7 +49,7 @@ Hearts & Skulls:
 - If the player hits at least one skull -1 point
 ![](public/img/game3.jpg)
 
-## How to use
+## How to Test
 
 ```
 $ npm ci
