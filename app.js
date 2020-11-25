@@ -30,6 +30,7 @@ io.sockets.on('connection', function(socket){
     socket.emit('showtitle');
     console.log('New connection!');
 
+    
     /**************************** Room/ View Functions ****************************/
     // Create room or join room 
     socket.on('hostCreateNewGame',function(data){
@@ -83,6 +84,7 @@ io.sockets.on('connection', function(socket){
         //Update the total user count for display
         io.to(this.gameid).emit('updatechatinfo', numClients[this.gameid], this.gameid);
     });
+
 
     /**************************** Chat Functions ****************************/
     // Send message back to the game room 
@@ -138,6 +140,7 @@ io.sockets.on('connection', function(socket){
     socket.on('resetpoints',function(){
         this.playerpoints = 0;
     });
+
 
     /**************************** Game2 Functions ****************************/
     // Shows game page, initialize game room variables
@@ -200,6 +203,7 @@ io.sockets.on('connection', function(socket){
             io.to(this.gameid).emit('resetgame2');
     });  
 
+
     /**************************** Game3 Functions ****************************/
     // Shows game page, initialize game room variables
     socket.on('servershowgame3',function(){
@@ -243,15 +247,6 @@ io.sockets.on('connection', function(socket){
             io.to(this.gameid).emit('flipclient', msg, thisbtn);
         }
 
-        // //Initialize if roomtocolor does not contain game id as key, set roomtocolor[this.gameid] to empty list
-        // if (!(this.gameid in roomtocolor)){
-        //     roomtocolor[this.gameid] = [];
-        // }
-        // //Append color if roomtocolor[this.gameid] does not have the color
-        // if (!(roomtocolor[this.gameid].includes(this.playercolor))){
-        //     roomtocolor[this.gameid].push(this.playercolor);
-        // }
-        // io.to(this.gameid).emit('addToScore', roomtocolor[this.gameid], colortopoints);
     });
 
     //set score for all players after next round is clicked
@@ -312,13 +307,12 @@ var PromptPool = [
     "Nobody ever _____ because _____",
     "What is the meaning of life?",
     "I would sacrifice _____ for _____",
-    "Before I die I must _____",
+    "Something on my bucketlist is _____",
     "I'm breaking up with you because _____",
     "Dogs are amazing because _____",
     "Sorry, I can't wear a mask. I have a medical condition called _____",
     "It's not over until _____",
     "People talk about politics but don't know that _____",
-    "I don't wanna die until _____",
     "If the _____ doesn't _____, I DON'T want it!",
     "Nothing is more of a turn off than _____",
     "What's worse than _____ is _____",
