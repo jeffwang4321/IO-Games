@@ -9,6 +9,7 @@ socket.on('showtitle',function(){
     titlepage.style.display = 'block';
 });
 
+
 //Btn click - join (show joinpage)
 function btnjoin(){
     console.log('btnjoin');
@@ -17,10 +18,12 @@ function btnjoin(){
     document.getElementById('btncolor').style.background=randomColor() 
 }
 
+
 //Btn click - color (Generate random color)
 function btncolor(){
     document.getElementById('btncolor').style.background=randomColor() 
 }
+
 
 //Random Colors: https://stackoverflow.com/questions/5850590/random-color-generator-with-hue-saturation-and-more-controls
 function rand(min, max) {
@@ -42,10 +45,12 @@ function btnstart(){
     socket.emit('checkroom', inputGameID.value);
 }
 
+
 // Emit alert msg when game in progress or full
 socket.on('ingame',function(){
     alert('Game in progress or full')
 });
+
 
 // Room is available, send join page data and create room
 socket.on('startgood',function(){
@@ -74,6 +79,7 @@ socket.on('updatechatinfo',function(numUsers, gameid){
 
 /******************* Chat Functions *******************/
 var chaton = true;
+
 //Btn click - chattoggle (Show / Hide chatpage)
 function chattoggle(){
     if(chaton === true){
@@ -87,6 +93,7 @@ function chattoggle(){
     }
 }
 
+
 //Btn click - send (Calls server to send chat, server checks rooms)
 chatform.onsubmit = function(e){
     //prevent the form from refreshing the page
@@ -96,6 +103,7 @@ chatform.onsubmit = function(e){
     socket.emit('sendMsgToServer', chatinput.value);
     chatinput.value = "";
 }
+
 
 //Add a chat cell to our chat list view (Distinct client colors included!), and scroll to the bottom 
 socket.on('addToChat',function(msg, playercolor){
@@ -142,10 +150,12 @@ var board = [
 //Store a copy of the blank board state
 var blankboard = board.slice();
 
+
 // Btn click - game1 (check with server to show game1)
 function btngame1(){
     socket.emit('servershowgame1'); 
 }
+
 
 // Shows game1 page/ board
 socket.on('showgame1',function(){
@@ -155,6 +165,7 @@ socket.on('showgame1',function(){
     scoretext.innerHTML =""; //Empty previous scores
 });
 
+
 // Btn click - table node (Sends the node id and gets player color)
 function tdclick(tdnode){
     console.log("Clicked node: ", tdnode.id)
@@ -163,12 +174,14 @@ function tdclick(tdnode){
     }
 }
 
+
 // Set player color to board
 socket.on('setcolor', function(tdid,playercolor){
     board[tdid-1] = playercolor;
     console.log("Color: ", board[tdid-1])
     document.getElementById(tdid).style.background=playercolor
 });
+
 
 // Game over, reset board state and page displays
 socket.on('game1over', function(){
@@ -181,6 +194,7 @@ socket.on('game1over', function(){
     game1page.style.display = 'none';
     socket.emit('resetpoints');
 });
+
 
 //Add a chat cell to our chat list view (Distinct client colors included!), and scroll to the bottom 
 socket.on('addToScore',function(roomtocolor, colortopoints){
@@ -207,6 +221,7 @@ function btngame2(){
     socket.emit('servershowgame2'); 
 }
 
+
 // Shows game2 page/ board
 socket.on('showgame2',function(prompt){
     choicepage.style.display = 'none';
@@ -216,10 +231,12 @@ socket.on('showgame2',function(prompt){
     scoretext.innerHTML =""; //Empty previous scores
 });
 
+
 // Ask server to show next prompt
 function btnnext(){
     socket.emit('servernext'); 
 }
+
 
 // Show next prompt / next round
 socket.on('shownext',function(prompt){
@@ -228,16 +245,19 @@ socket.on('shownext',function(prompt){
     game2fake.style.display = 'block';
 });
 
+
 // Reveal? work in progress...
 function btnreveal(){
     console.log("Hit")
     socket.emit('serverreveal'); 
 }
 
+
 socket.on('reveal',function(){
     game2text.style.display = 'block';
     game2fake.style.display = 'none';
 });
+
 
 // Answer Function
 //Btn click - send (Calls server to send chat, server checks rooms)
@@ -251,6 +271,7 @@ game2form.onsubmit = function(e){
     game2form.innerHTML = "";
 }
 
+
 //Add a chat cell to our chat list view (Distinct client colors included!), and scroll to the bottom 
 socket.on('addTogame2',function(msg, playercolor){
     console.log('got an answer + color: ', playercolor);
@@ -260,16 +281,19 @@ socket.on('addTogame2',function(msg, playercolor){
     game2fake.scrollTop = game2fake.scrollHeight;  
 });
 
+
 // Btn click - Answer cell (Sends the node id and gets player color)
 function cellclick(color){
     console.log("Clicked cell: ", color);
     socket.emit('scoregame2', color);
 }
 
+
 // Ask server to emit game over
 function btngame2over(){
     socket.emit('servergame2over');
 }
+
 
 // Game over, reset game state and page displays
 socket.on('game2over', function(){
@@ -280,6 +304,7 @@ socket.on('game2over', function(){
     socket.emit('resetpoints');
 });
 
+
 // Reset the anser input for next rounds
 socket.on('resetgame2',function(){
     game2text.innerHTML = "";
@@ -287,15 +312,19 @@ socket.on('resetgame2',function(){
     game2form.innerHTML = '<input id="game2input" style="width:69%; height:30px;" autocomplete="off" type="text" /> <input class="btn" type="submit" value="Send" />';
 });
 
+
+
 /******************* Game3 (Hearts & Skulls) - Variables and Functions *******************/
 var numheart = 0;
 var numskull = 0;
 var g3score = 0; 
 
+
 // Btn click - game3 (check with server to show game1)
 function btngame3(){
     socket.emit('servershowgame3'); 
 }
+
 
 // Shows game2 page/ board
 socket.on('showgame3',function(prompt){
@@ -311,6 +340,7 @@ function btngame3over(){
     socket.emit('servergame3over');
 }
 
+
 // Game over, reset game state and page displays
 socket.on('game3over', function(){
     choicepage.style.display = 'block';
@@ -319,6 +349,7 @@ socket.on('game3over', function(){
     // game3fake.style.display = 'block';
     socket.emit('resetpoints');
 });
+
 
 // Reset the anser input for next rounds
 socket.on('resetgame3',function(){
@@ -331,6 +362,7 @@ socket.on('resetgame3',function(){
     btnhearts.style.background = '#4070F4';
 });
 
+
 // Btn click - heart
 function btnheart(){
     if(numheart < 2){
@@ -341,6 +373,7 @@ function btnheart(){
         btnhearts.style.background = 'grey';
     }
 }
+
 
 // Btn click - skull
 function btnskull(){
@@ -353,12 +386,14 @@ function btnskull(){
     }
 }
 
+
 //Add a chat cell to our chat list view (Distinct client colors included!), and scroll to the bottom 
 socket.on('addTogame3',function(msg, playercolor, i){
     console.log('got an answer + color: ', playercolor, i);
     game3fake.innerHTML += '<div id ="g' + i + '" class="game3Cell" style="color:' +  playercolor+ ';" onclick="g3click(' + "'" + msg + "', 'g" + i + "');" + '"><b>? ? ?</b></div>'; 
     game3fake.scrollTop = game2fake.scrollHeight;  
 });
+
 
 function g3click(msg, thisbtn){
     // console.log("Clicked cell: ", msg, thisbtn);
@@ -372,12 +407,14 @@ function g3click(msg, thisbtn){
     }
 }   
 
+
 socket.on('flipclient',function(msg, thisbtn){
     console.log("flipclient: ", msg, thisbtn);
     document.getElementById(thisbtn).style.display = "none";
     game3text.innerHTML += '<div id="game3Cell2"><i class="bx bxs-' + msg + '"></i></div>'; 
     game3text.scrollTop = game2text.scrollHeight;  
 });
+
 
 // Btn click - End game3 (Ask server to emit game over)
 function btng3next(){
