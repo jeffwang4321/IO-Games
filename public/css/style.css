@@ -107,6 +107,7 @@ body {
     padding-bottom: 10px;
 }
 
+
 /********************* Title & Join page *********************/
 #titlepage, #joinpage{
     display: none;
@@ -124,6 +125,7 @@ body {
     width: 130px;
     height: 30px;
 }
+
 
 /********************* Buttons *********************/
 .btn, button{
@@ -146,8 +148,8 @@ body {
     width: 130px;
 }
 
-.btn:hover, button:hover{
-    background: gray;
+.btn:hover, button:hover, #btncolor:hover{
+    background: gray !important; 
     cursor: pointer;
 }
 
