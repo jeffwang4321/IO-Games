@@ -30,7 +30,7 @@ io.sockets.on('connection', function(socket){
     socket.emit('showtitle');
     console.log('New connection!');
 
-    
+
     /**************************** Room/ View Functions ****************************/
     // Create room or join room 
     socket.on('hostCreateNewGame',function(data){
@@ -235,18 +235,7 @@ io.sockets.on('connection', function(socket){
     // All player score for game 2
     socket.on('flipgame3',function(msg, thisbtn){
         console.log("flip3: ", msg, thisbtn);
-        if(msg === 'skull'){
-            // console.log('skull');
-            // --this.playerpoints;
-            // colortopoints[this.playercolor] = this.playerpoints;
-            io.to(this.gameid).emit('flipclient', msg, thisbtn);
-        } else {
-            // console.log('heart');
-            // --this.playerpoints;
-            // colortopoints[this.playercolor] = this.playerpoints;
-            io.to(this.gameid).emit('flipclient', msg, thisbtn);
-        }
-
+        io.to(this.gameid).emit('flipclient', msg, thisbtn);
     });
 
     //set score for all players after next round is clicked
