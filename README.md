@@ -39,7 +39,7 @@ Party Blanks:
 - Once remaining players have answered, hit the reveal button to read the answers
 - Prompt reader then selects their favourite answer for +1 point!
 - Click the button to skip bad prompts or end the game 
-![](public/img/game2.jpg)
+![](public/img/partyblanks.gif)
 
 Hearts & Skulls:
 - Each round players can place any combination of 2 hearts and 2 skulls
@@ -48,7 +48,7 @@ Hearts & Skulls:
 - Click the button to end the round
 - If the player does not hit a skull after all their flips +1 point!
 - If the player hits at least one skull -1 point
-![](public/img/game3.jpg)
+![](public/img/heartsnskulls.gif)
 
 ## How to Test
 
