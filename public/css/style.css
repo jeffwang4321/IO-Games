@@ -143,13 +143,27 @@ body {
     width: 20%;
 }
 
-#btnjoin, #btncolor, #btnstart, #btngame1, #btngame2, #btngame3{
+#btnjoin, #btnstart, #btngame1, #btngame2, #btngame3{
     margin: 5px;
     width: 130px;
 }
 
-.btn:hover, button:hover, #btncolor:hover{
-    background: gray !important; 
+
+.btn:hover, button:hover{
+    background: gray; 
+    cursor: pointer;
+}
+#btncolor{
+    margin: 5px;
+    height: 34px;
+    width: 134px;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+}
+
+#btncolor:hover{
+    border-color: black;
     cursor: pointer;
 }
 
