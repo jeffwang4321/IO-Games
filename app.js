@@ -170,7 +170,7 @@ io.sockets.on('connection', function(socket){
     });
 
     // All player score for game 2
-    socket.on('scoregame2',function(color){
+    socket.on('scoregame2',function(color, msg){
         if(colortopoints[color] === undefined){
             colortopoints[color] = 0;
         }
@@ -184,6 +184,8 @@ io.sockets.on('connection', function(socket){
         if (!(roomtocolor[this.gameid].includes(color))){
             roomtocolor[this.gameid].push(color);
         }
+
+        io.to(this.gameid).emit('addToChat', '*** ' + this.playername + ' chose "' + msg + '" ***', this.playercolor);
         io.to(this.gameid).emit('addToScore', roomtocolor[this.gameid], colortopoints);
         ++round[this.gameid];
         io.to(this.gameid).emit('shownext', PromptPoolAll[this.gameid][round[this.gameid]]);
@@ -289,70 +291,35 @@ function shuffle(array) {
 
 //Game 2 Prompts and shuffle function
 var PromptPool = [
-    "_____ is the end of humanity!",
-    "_____ made _____ GREAT again!",
-    "What is the hardest thing about life?",
-    "You are running for president, what is your slogan?",
-    "Nobody ever _____ because _____",
-    "What is the meaning of life?",
-    "I would sacrifice _____ for _____",
-    "Something on my bucketlist is _____",
-    "I'm breaking up with you because _____",
-    "Dogs are amazing because _____",
-    "Sorry, I can't wear a mask. I have a medical condition called _____",
-    "It's not over until _____",
-    "People talk about politics but don't know that _____",
-    "If the _____ doesn't _____, I DON'T want it!",
-    "Nothing is more of a turn off than _____",
-    "What's worse than _____ is _____",
-    "I have a hundred reasons to _____", 
-    "What's a collab that would fail miserably?",
-    "Today is the day _____",
-    "Honestly bro... Things haven't been the same since _____",
-    "Listening to _____ just takes me back to a simpler time...",
-    "People spend 1k on a phone but _____",
-    "During Covid, the best vacation spot is _____",
-    "The EASIEST way to be best friends with someone is if you _____",
-    "_____ is _____",
-    "What is something people do but NEVER talk about?",
-    "That it! _____ was the final straw!",
-    "If I had _____, I wouldn't have _____",
-    "I don't believe in love, I only believe in _____",
-    "Kids these days will never understand _____",
-    "I gave up _____ for _____",
-    "I HATE kids these days because _____",
-    "Education is _____",
-    "My favourite game to play is _____",
-    "First comes _____, then comes _____, finally comes _____ ",
-    "I just need _____ to be happy",
-    "I used to _____ until _____",
-    "I used to have friends until _____",
-    "If I could go back to highschool, I would _____",
-    "If I could go back in time, I would _____",
-    "What is one thing you would change about the world?",
-    "What is your BIGGEST wish?",
-    "What is a HUGE red flag?",
-    "You're going on a first date. What do you do?",
-    "What Youtube video title that would go viral?",
-    "What can you not live without?",
-    "It's EASY to make money, just _____",
-    "Our school revealed a new mascot, the _____",
-    "The president reavealed a new bill. The _____",
-    "In 2021, the Try Guys try _____",
-    "I identify as _____, so I don't have to _____",
-    "_____? I am _____",
-    "People _____, but _____",
-    "Is it too much to ask for _____",
-    "Science is _____",
-    "Once we discover aliens _____",
-    "In year 2050, _____",
-    "Back in the 1700's _____",
-    "Before Covid19 there was _____",
-    "Life during World War II was _____",
-    "My Grandfather was _____",
-    "_____ like _____",
-    "_____ but _____",
-    "I would _____, however _____"
+    // Cards agaist humanity prompts
+    "As a teacher how do we get out students to succeed?", 
+    "What's fun until it gets weird?",
+    "Anthropologists have recently discovered a primitive tribe that worships _____",
+    "What's a girl's best friend?",
+    "When you get right down to it, _____ is just _____",
+    "Turns out that _____-Man was neither the hero we needed nor wanted.",
+    "_____ is a slippery slope that leads to _____",
+    "_____ : Hours of fun. Easy to use. Perfect for _____!",
+    "My country, 'tis of thee, sweet land of _____",
+    "In his farewell address, George Washington famously warned Americans about the dangers of _____",
+    "Do you lack energy? Does it sometimes feel like the whole world is _____?",
+    "Patient presents with _____ are likely a result of _____",
+    "Well what do you have to say for yourself, Casey? This is the third time you've been sent to the principal's office for _____",
+    "I'm not like the rest of you. I'm too rich and busy for _____",
+    "This year's hottest album is _____ by _____",
+    "This is the prime of my life. I'm young, hot, and full of _____",
+    "Coming to Broadway this season, _____ : The Musical.",
+    "What will I bring back in time to convince people that I am a powerful wizard?",
+    "If you can't handle _____, you'd better stay away from _____",
+    "I'm sorry sir, but we don't allow _____ at the country club.",
+    "Here's what you can expect for the new year. Out with _____, in with _____",
+    "Studies show that lab rats navigate mazes 50% faster after being exposed to _____",
+    "_____  would be woefully incomplete without _____",
+    "After months of practice with _____, I think I'm finally ready for _____",
+    "In a pinch, _____ can be a suitable substitute for _____",
+    "Having the worst day EVER. #_____",
+    "In an attempt to reach a wider audience, the Museum of Natural History has opened an interactive exhibit on _____"
+    // Feel free to add more
 ]
 
 

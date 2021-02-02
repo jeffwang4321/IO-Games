@@ -246,7 +246,7 @@ socket.on('shownext',function(prompt){
 });
 
 
-// Reveal? work in progress...
+// Reveal
 function btnreveal(){
     console.log("Hit")
     socket.emit('serverreveal'); 
@@ -275,7 +275,7 @@ game2form.onsubmit = function(e){
 //Add a chat cell to our chat list view (Distinct client colors included!), and scroll to the bottom 
 socket.on('addTogame2',function(msg, playercolor){
     console.log('got an answer + color: ', playercolor);
-    game2text.innerHTML += '<div id="game2Cell">' + msg + '<i class="bx bxs-check-circle" onclick="cellclick(' + "'" + playercolor + "'" + ');"></i></div>';    
+    game2text.innerHTML += '<div id="game2Cell">' + msg + '<i class="bx bxs-check-circle" onclick="cellclick(' + "'" + playercolor + "'" + ', '+ "'" + msg + "'" + ');"></i></div>';    
     game2text.scrollTop = game2text.scrollHeight;  
     game2fake.innerHTML += '<div id="game2Cell"><b>? ? ?</b></div>'; 
     game2fake.scrollTop = game2fake.scrollHeight;  
@@ -283,9 +283,9 @@ socket.on('addTogame2',function(msg, playercolor){
 
 
 // Btn click - Answer cell (Sends the node id and gets player color)
-function cellclick(color){
-    console.log("Clicked cell: ", color);
-    socket.emit('scoregame2', color);
+function cellclick(color, msg){
+    console.log("Clicked msg: ", msg, "Msg player color: ", color);
+    socket.emit('scoregame2', color, msg);
 }
 
 
