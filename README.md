@@ -1,7 +1,7 @@
 # IO-Games
 ### Demo: https://youtu.be/f04S7N4gTlE
-- Browser based IO Games using Node.js and socket.io packets 
-- Mimicked a client server environment using web sockets 
+- Browser based IO Games using Node.js and Socket.io
+- Mimics a client server environment using web sockets 
 - Client connections organized into unique rooms and can run independently
 - Implemented a group chat feature, 3 unique minigames and score tracking
 - Hosted example: https://io-games-jeff-wang.herokuapp.com/
