@@ -3,27 +3,28 @@
 - Browser based IO Games using Node.js and socket.io packets 
 - Mimicked a client server environment using web sockets 
 - Client connections organized into unique rooms and can run independently
+- Implemented a group chat feature, 3 unique minigames and score tracking
 - Hosted example: https://io-games-jeff-wang.herokuapp.com/
 
 
 ## Features
 
 Chat Features:
-- Users can join different rooms by each entering a player name and game id
-- Users can assigned a unique identification color
-- Users can send messages to other users in the room
+- Users can join different rooms by each entering a player name and the game id
+- Users can assign themselves a unique identification color
+- Users can send groupchat messages to other users in the room
 - A notification is sent when a user joins or leaves the room
-- Chatroom tracks the number of connected users, player name & color 
-- Users can toggle chat display to show or hide chat
+- Chatroom tracks the number of connected users, player name & player color
+- Users can toggle chat display to show or hide the chat modal
 
 Game Features:
-- Score tracking displays in real-time
-- Room connection for current room is disabled while game is in session
-- Room state & display automatically reset at the end of each round 
+- Score tracking modal displays in real-time
+- Room connection is disabled while a game is in session
+- Room states & display automatically reset at the end of each round
 - User disconnection, empty room state and multi-round edge cases tested 
 - Blank tiles change to user color on click (Spam Colors)
-- Interactive answer prompts display after user input (Party Blanks)
-- Individual card type and info tracked and responsive to client interaction (Hearts & Skulls) 
+- Interactive prompts display after user input (Party Blanks)
+- Individual card type and info tracked and respond to client interactions (Hearts & Skulls) 
 
 ## How To Play
 
