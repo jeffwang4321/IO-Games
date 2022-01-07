@@ -1,5 +1,7 @@
 # IO-Games
-### Demo: https://youtu.be/f04S7N4gTlE
+### Youtube Demo: https://youtu.be/f04S7N4gTlE
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/f04S7N4gTlE/0.jpg)](https://www.youtube.com/watch?v=f04S7N4gTlE)
+
 - Browser based minigames built using Node.js and Socket.io
 - Mimics a client server environment using web sockets 
 - Client connections organized into unique rooms and can run independently
