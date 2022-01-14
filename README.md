@@ -64,6 +64,6 @@ Local testing:
 
 Multiplayer testing:
 - Forward port 8080 via router settings
-- Point to public IPv4 Address http://ipaddress:8080 
+- Point to your public IPv4 Address http://IPADDRESS:8080 
 
 
