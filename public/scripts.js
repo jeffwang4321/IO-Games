@@ -156,6 +156,10 @@ function btngame1(){
     socket.emit('servershowgame1'); 
 }
 
+// Btn click - End Game 
+function endgame1(){
+    socket.emit('serverendgame1'); 
+}
 
 // Shows game1 page/ board
 socket.on('showgame1',function(){

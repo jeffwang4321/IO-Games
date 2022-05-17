@@ -1,4 +1,4 @@
-//207.102.105.88:4141
+// http://localhost:8080/
 var express = require('express'); // Import the Express module
 var app = express(); // Create a new instance of Express
 var server = require('http').createServer(app).listen(process.env.PORT || 8080); // Create a Node.js based http server on port 8080
@@ -100,6 +100,18 @@ io.sockets.on('connection', function(socket){
         ingame[this.gameid] = true;
         hit[this.gameid] = 0;
         io.to(this.gameid).emit('showgame1');
+    });
+
+    // End game page, reset game room variables
+    socket.on('serverendgame1',function(){
+        console.log("HITT serverendgame1");
+        io.to(this.gameid).emit('game1over');
+        for (i in roomtocolor[this.gameid]){
+            colortopoints[roomtocolor[this.gameid][i]] = 0;
+        }
+        hit[this.gameid] = 0;
+        ingame[this.gameid] = false;
+        roomtocolor[this.gameid] = [];
     });
 
     // Send back player color to client
@@ -295,20 +307,21 @@ var PromptPool = [
     "As a teacher how do we get out students to succeed?", 
     "What's fun until it gets weird?",
     "Anthropologists have recently discovered a primitive tribe that worships _____",
+    "Hey, baby, come back to my place and I'll show you _____",
+    "Lovin' you is easy 'cause you're _____",
     "What's a girl's best friend?",
+    "For my next trick, I will pull _____ out of _____",
     "When you get right down to it, _____ is just _____",
-    "Turns out that _____-Man was neither the hero we needed nor wanted.",
     "_____ is a slippery slope that leads to _____",
     "_____ : Hours of fun. Easy to use. Perfect for _____!",
     "My country, 'tis of thee, sweet land of _____",
     "In his farewell address, George Washington famously warned Americans about the dangers of _____",
     "Do you lack energy? Does it sometimes feel like the whole world is _____?",
-    "Patient presents with _____ are likely a result of _____",
+    "Patients with _____ are likely a result of _____",
     "Well what do you have to say for yourself, Casey? This is the third time you've been sent to the principal's office for _____",
     "I'm not like the rest of you. I'm too rich and busy for _____",
     "This year's hottest album is _____ by _____",
     "This is the prime of my life. I'm young, hot, and full of _____",
-    "Coming to Broadway this season, _____ : The Musical.",
     "What will I bring back in time to convince people that I am a powerful wizard?",
     "If you can't handle _____, you'd better stay away from _____",
     "I'm sorry sir, but we don't allow _____ at the country club.",
@@ -318,7 +331,44 @@ var PromptPool = [
     "After months of practice with _____, I think I'm finally ready for _____",
     "In a pinch, _____ can be a suitable substitute for _____",
     "Having the worst day EVER. #_____",
-    "In an attempt to reach a wider audience, the Museum of Natural History has opened an interactive exhibit on _____"
+    "In an attempt to reach a wider audience, the Museum of Natural History has opened an interactive exhibit on _____",
+    "Everyone down on the ground! We don't want to hurt anyone. We're just here for _____",
+    "TSA guidelines now prohibit _____ on airplanes.",
+    "You left this stain on my couch, what is it?",
+    "A romantic, candlelit dinner would be incomplete without _____",
+    "What did the U.S. airdrop to the children of Afghanistan?",
+    "While the United States raced the Soviet Union to the moon, the Mexican government funneled millions of pesos into research on _____",
+    "Armani suit: $1,000. Dinner for two at that swanky restaurant: $300. The look on her face when you surprise her with _____ : priceless.",
+    "In the seventh circle of Hell, sinners must endure _____ for all eternity.",
+    "What helps the president unwind?",
+    "During high school, I never really fit in until I found _____ club.",
+    "Only two things in life are certain: death and _____",
+    "2 AM in the city that never sleeps. The door swings open and she walks in. Something in her eyes tells me she's looking for _____",
+    "Next season on Man vs. Wild, Bear Grylls must survive in the depths of the Amazon with only _____ and his wits.",
+    "Charades was ruined for me forever when my mom had to act out _____",
+    "Adventure. Romance. _____. From Paramount Pictures we present _____",
+    "I spent my whole life working toward _____, only to have it ruined by _____.",
+    "What ended my last relationship?",
+    "After blacking out during New year's Eve, I was awoken by _____",
+    "Before I run for president, I must destroy all evidence of my involvement with _____",
+    "Members of New York's social elite are paying thousands of dollars just to experience _____",
+    "What will always get you laid?",
+    "I learned the hard way that you can't cheer up a grieving friend with _____",
+    "I really hope my grandma doesn't ask me to explain _____ again.",
+    "What are my parents hiding from me?",
+    "Do not mess with me! I am literally _____ right now.",
+    "Alright, boys. Our frat house is sad AF, and all the hot baddies are over at Kappa Sigma. The time has come to commence Operation _____",
+
+    "Nothing turns me off more than _____",
+    "I can't tell anyone I do _____, or else I will be incriminated.",
+    "What's a headline that is sure to go viral?",
+    "You catch your partner _____ your best friend... you _____",
+    "What is the hardest thing about your life?",
+    "What is 2 things that keep you going in this world?",
+    "It is year 2050, we can now download our conscious into virtual reality. What is the first thing you do?",
+    "Back in the 1700's our ancester used to _____ during their free time",
+    "A criminal group hijacks the plane you're on... what do you do?",
+    "Hackers reveal _____ in Elon Musk's search history.",
     // Feel free to add more
 ]
 

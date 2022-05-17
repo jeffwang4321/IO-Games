@@ -71,10 +71,10 @@ body {
     margin: auto;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
-    margin: 5% auto;
+    margin: 2% auto;
     padding: 40px;
     background: white;
-    width: 80%;
+    width: 70%;
     border-radius: 20px;
 }
 .popup .close {
@@ -94,7 +94,7 @@ body {
     max-height: 100%;
     overflow: auto;
 }
-.content h2 {
+.content h2{
     padding-bottom: 5px;
 }
 .content li{
@@ -105,6 +105,14 @@ body {
 }
 .content p{
     padding-bottom: 10px;
+}
+
+#built-by{
+    color: #4070F4;
+    text-decoration: none;
+}
+#built-by:hover{
+    color: grey;
 }
 
 
@@ -143,7 +151,7 @@ body {
     width: 20%;
 }
 
-#btnjoin, #btnstart, #btngame1, #btngame2, #btngame3{
+#btnjoin, #btnstart, #btngame1, #btngame2, #btngame3, #endgame1{
     margin: 5px;
     width: 130px;
 }
@@ -160,16 +168,11 @@ body {
     border-color: white;
     border-style: solid;
     border-width: 2px;
+    font-size: 25px;
 }
-
 #btncolor:hover{
     border-color: black;
     cursor: pointer;
-}
-
-#btncolor{
-    /* padding: 1px; */
-    font-size: 25px;
 }
 
 /********************* Chat, choice, game & score page *********************/
@@ -246,7 +249,7 @@ body {
 }
 #gametable{
     display: flex;
-    margin: 15px 0;
+    margin: 15px 0 20px;
     justify-content: center;
 }
 td{
