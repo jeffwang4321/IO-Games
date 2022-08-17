@@ -1,6 +1,6 @@
 # IO-Games
 ### Youtube Demo: https://youtu.be/f04S7N4gTlE
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/f04S7N4gTlE/0.jpg)](https://www.youtube.com/watch?v=f04S7N4gTlE)
+[![IMAGE ALT TEXT HERE](public/img/VideoThumbnail.png)](https://www.youtube.com/watch?v=f04S7N4gTlE)
 
 - Hosted: https://io-games-jeff-wang.herokuapp.com/
 - Browser based minigames built using Node.js and Socket.io
