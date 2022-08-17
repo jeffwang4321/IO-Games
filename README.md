@@ -3,7 +3,7 @@
 [![IMAGE ALT TEXT HERE](public/img/VideoThumbnail.png)](https://www.youtube.com/watch?v=f04S7N4gTlE)
 
 - Hosted: https://io-games-jeff-wang.herokuapp.com/
-- Browser based minigames built using Node.js and Socket.io
+- Browser based minigames built using Node.js, Express and Socket.io
 - Mimics a client server environment using web sockets 
 - Client connections organized into unique rooms and can run independently
 - Implemented a group chat feature, 3 unique minigames and score tracking
